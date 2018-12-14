@@ -1,0 +1,11 @@
+<!--pages/index/index.wxml-->
+<view class="wrapper">
+  <button bindtap="init">click</button>
+  <view id="hot-wrapper">
+    <view wx:for="{{hotList}}" wx:key="item.desc">
+      <text class="hot-index">{{index+1}}</text>
+      <text class="hot-desc">{{item.desc}}</text>
+      <text class="hot-num">{{item.n}}</text>
+    </view>
+  </view>
+</view>

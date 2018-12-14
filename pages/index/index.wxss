@@ -1,0 +1,34 @@
+/* pages/index/index.wxss */
+
+#hot-wrapper {
+  padding: 50rpx;
+  margin-bottom: 50rpx;
+}
+
+#hot-wrapper view {
+  height: 40px;
+  width: 650rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hot-index {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  margin-right: 25rpx;
+}
+.hot-desc {
+  display: block;
+  width: 100%; 
+  text-align: left;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hot-num {
+  color: #f00;
+  margin-left: 25rpx;
+}
+
+
