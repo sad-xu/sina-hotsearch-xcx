@@ -3,9 +3,9 @@
     "pages/index/index"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "热搜分析师"
   }
 }

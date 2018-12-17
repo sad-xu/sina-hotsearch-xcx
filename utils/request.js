@@ -2,6 +2,10 @@
 const URL = 'http://127.0.0.1:8021/api/'
 
 const request = ({url, method = 'get', data = {}}) => {
+  wx.showLoading({
+    title: 'loading...',
+    mask: true,
+  })
   return new Promise((resolve, reject) => {
     wx.request({
       url: URL + url,
@@ -24,6 +28,9 @@ const request = ({url, method = 'get', data = {}}) => {
       fail(err) {
         console.log('接口调用失败')
         reject(err)
+      },
+      complete() {
+        wx.hideLoading()        
       }
     })
   })

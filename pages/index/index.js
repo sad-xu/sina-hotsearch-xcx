@@ -4,17 +4,32 @@ import request from '../../utils/request'
 
 Page({
   data: {
+    status: 'loading',
     hotList: []
   },
   onLoad: function () {
-    console.log('onload')
+    this.getLatestData()
   },
-  init() {
-    request.getRealtimeHot().then(resList => {
+  onPullDownRefresh: function() {
+    this.getLatestData()
+      .then(() => {
+        wx.stopPullDownRefresh()
+      })
+  },
+  // 获取实时热搜
+  getLatestData() {
+    return request.getRealtimeHot().then(resList => {
       console.log(resList)
       this.setData({
+        status: resList.length ? 'rendering' : 'error',
         hotList: resList
+      })
+    }).catch(err => {
+      console.log(err)
+      this.setData({
+        status: 'error'
       })
     })
   }
 })
+
