@@ -8,12 +8,14 @@ Page({
     hotList: [],
     // 搜索相关
     searchWord: '',
+    placeholderText: '搜索热搜关键词',
     showModal: false,  // 输入框得焦，背景虚化，
   },
   onLoad: function () {
     this.getLatestData()
   },
   onPullDownRefresh: function() {
+    if (this.data.showModal) return wx.stopPullDownRefresh()
     this.getLatestData()
       .then(() => {
         wx.stopPullDownRefresh()
@@ -44,13 +46,15 @@ Page({
   bindFocus(e) {
     console.log('focus')
     this.setData({
-      showModal: true
+      showModal: true,
+      placeholderText: ''
     })
   },
   // 取消
   cancleInput(e) {
     this.setData({
-      showModal: false
+      showModal: false,
+      placeholderText: '搜索热搜关键词'
     })
   },
   // 输入 - 推荐相关热点 

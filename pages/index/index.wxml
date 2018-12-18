@@ -2,14 +2,14 @@
 <view class="wrapper">
   <!-- search -->
   <view class="search-wrapper">
-    <input 
-      placeholder="搜索热搜关键词" maxlength="10" confirm-type="search"
+    <input class="{{showModal ? 'input-focus' : ''}}"
+      placeholder="{{placeholderText}}" maxlength="10" confirm-type="search"
       bindinput="bindInput" bindfocus="bindFocus" 
       bindconfirm="bindConfirm">
     </input>
-    <text hidden="{{!showModal}}" bindtap="cancleInput">取消</text>
+    <text class="{{showModal ? 'text-focus' : ''}}" bindtap="cancleInput">取消</text>
   </view>
-  <view hidden="{{!showModal}}" class="modal">modal</view>
+  <view id="modal" class="{{showModal ? 'show-modal' : ''}}">modal</view>
 
   <!-- hotsearch -->
   <view class="{{showModal ? 'blur' : ''}}">
