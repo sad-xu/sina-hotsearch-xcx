@@ -9,7 +9,12 @@
     </input>
     <text class="{{showModal ? 'text-focus' : ''}}" bindtap="cancleInput">取消</text>
   </view>
-  <view id="modal" class="{{showModal ? 'show-modal' : ''}}">modal</view>
+  <!-- 搜索模态窗 -->
+  <view id="modal" class="{{showModal ? 'show-modal' : ''}}">
+    <view class="search-result">
+      <text wx:for="{{keywordList}}" wx:key="item._id">{{item.desc}}</text>
+    </view>
+  </view>
 
   <!-- hotsearch -->
   <view class="{{showModal ? 'blur' : ''}}">

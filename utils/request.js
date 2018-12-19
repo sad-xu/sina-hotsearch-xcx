@@ -1,5 +1,6 @@
 // 请求
-const URL = 'http://127.0.0.1:8021/api/'
+// const URL = 'http://127.0.0.1:8021/api/'
+const URL = 'http://192.168.0.101:8021/api/'
 
 const request = ({url, method = 'get', data = {}}) => {
   wx.showLoading({
@@ -37,13 +38,23 @@ const request = ({url, method = 'get', data = {}}) => {
 }
 
 // 获取当前热搜
-const getRealtimeHot = () => {
+const get_realtime_hot = () => {
   return request({
     url: 'realtimehot'
   })
 }
 
-export default {
-  getRealtimeHot,
+// 搜索热搜
+const search_keyword = (keyword) => {
+  return request({
+    url: 'search/keyword',
+    data: {
+      keyword
+    }
+  })
+}
 
+export {
+  get_realtime_hot,
+  search_keyword
 }

@@ -35,25 +35,39 @@
   transition: opacity 0.3s ease 0.3s !important;
 }
 
+/* 模态窗口 */
 #modal {
   position: fixed;
   top: 100rpx;
   left: 0;
   right: 0;
   bottom: 0;
+  visibility: hidden;
   opacity: 0;
-  background-color: rgb(0,0,0);
   transition: all 1s;
   z-index: -1;
 }
 .show-modal {
-  opacity: 0.3 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background-color: rgba(0,0,0,0.6) !important;
   z-index: 9999 !important;
 }
-
 .blur {  /* 高斯模糊 */
   filter: blur(2px);
 }
+
+/* 搜索结果列表 */
+.search-result {
+  color: #eee;
+}
+.search-result text {
+  display: block;
+  text-align: center;
+}
+
+
+
 
 
 /* 实时热搜 */
