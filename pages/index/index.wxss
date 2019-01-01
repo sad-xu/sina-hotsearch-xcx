@@ -9,6 +9,7 @@
 .search-wrapper input {
   /* flex-grow: 1; */
   float: left;
+  box-sizing: border-box;
   width: 710rpx;
   height: 60rpx;
   line-height: 60rpx;

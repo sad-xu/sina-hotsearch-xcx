@@ -5,6 +5,16 @@ import {
   search_keyword
 } from '../../utils/request.js'
 
+let lastTop = 0
+let lastTime = new Date().getTime()
+let scrollSpeed = 0  // 滚动速度 上 - 下 +
+let scrollFlag = true
+
+let touchStartTop = 0,
+    touchEndTop = 0;
+
+
+
 Page({
   data: {
     status: 'loading',
@@ -16,14 +26,64 @@ Page({
     keywordList: [],   // 查询得到的列表
   },
   onLoad: function () {
-    this.getLatestData()
+    // this.getLatestData()
   },
   onPullDownRefresh: function() {
     if (this.data.showModal) return wx.stopPullDownRefresh()
-    this.getLatestData()
-      .then(() => {
-        wx.stopPullDownRefresh()
+    // this.getLatestData()
+    //   .then(() => {
+    //     wx.stopPullDownRefresh()
+    //   })
+  },
+  onPageScroll({ scrollTop }) {
+    scrollSpeed = (scrollTop - lastTop) / (new Date().getTime() - lastTime) * 1000
+    lastTop = scrollTop
+    // console.log(scrollSpeed)
+  //   if (scrollFlag) {
+  //     if (scrollTop > 0 && scrollTop < 10) {
+  //       scrollFlag = false
+  //       wx.pageScrollTo({
+  //         scrollTop: 0,
+  //         complete: () => { scrollFlag = true }
+  //       })
+  //     } else if (scrollTop > 40 && scrollTop < 50) {
+  //       scrollFlag = false
+  //       wx.pageScrollTo({
+  //         scrollTop: 50,
+  //         complete: () => { scrollFlag = true }
+  //       })
+  //     }
+  //   }
+  //   console.log(scrollSpeed)
+  },
+  touchStart(e) {
+    touchStartTop = e.touches[0].pageY - e.touches[0].clientY
+  },
+  touchMove(e) {
+    // console.log(e)
+  },
+  touchEnd(e) {
+    let endTop = e.changedTouches[0].pageY - e.changedTouches[0].clientY
+    // console.log(endTop, lastTop)
+    if (endTop > 0 && endTop < 10) {
+      wx.pageScrollTo({
+        scrollTop: 0
       })
+    } else if (endTop > 40 && endTop < 50) {
+      wx.pageScrollTo({
+        scrollTop: 50
+      })
+    } else if (endTop >= 10 && endTop <= 40) {
+      if (scrollSpeed > 0) {
+        wx.pageScrollTo({
+          scrollTop: 50
+        })
+      } else {
+        wx.pageScrollTo({
+          scrollTop: 0
+        })
+      }
+    }
   },
   // 获取实时热搜
   getLatestData() {

@@ -1,5 +1,8 @@
 <!--pages/index/index.wxml-->
-<view class="wrapper">
+<view class="wrapper" 
+  bind:touchstart="touchStart"
+  bind:touchmove="touchMove"
+  bind:touchend="touchEnd">
   <!-- search -->
   <view class="search-wrapper">
     <input class="{{showModal ? 'input-focus' : ''}}"
@@ -27,4 +30,7 @@
     </view>
     <view wx:if="{{status === 'error'}}">出错了出错了出错了</view>
   </view>
+
+  <!-- test -->
+  <view style="height:700px;">11</view>
 </view>
