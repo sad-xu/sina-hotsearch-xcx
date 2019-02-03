@@ -8,10 +8,11 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.0",
+	"libVersion": "2.5.2",
 	"appid": "wx5eb0183ff94037cc",
 	"projectname": "sina-hotsearch-xcx",
 	"isGameTourist": false,

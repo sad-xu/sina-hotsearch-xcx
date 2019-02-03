@@ -1,12 +1,9 @@
 // 请求
 // const URL = 'http://127.0.0.1:8021/api/'
-const URL = 'http://192.168.0.101:8021/api/'
+const URL = 'http://192.168.0.104:8021/api/'
 
-const request = ({url, method = 'get', data = {}}) => {
-  wx.showLoading({
-    title: 'loading...',
-    mask: true,
-  })
+const wxRequest = ({url, method = 'get', data = {}}, {loading = true, tip = true} = {}) => {
+  if (loading) wx.showLoading({title: 'loading...', mask: true})
   return new Promise((resolve, reject) => {
     wx.request({
       url: URL + url,
@@ -18,16 +15,21 @@ const request = ({url, method = 'get', data = {}}) => {
           if (data.err === 0) {
             resolve(data.data)
           } else {
-            console.log(`errcode: ${data.err} ,msg: ${data.errmsg}`)
+            if (tip) {
+              wx.showToast({
+                title: `errcode: ${data.err} ,msg: ${data.errmsg}`,
+                icon: 'none'
+              })
+            }
             reject(data.errmsg)
           }
         } else {
-          console.log('网络错误')
+          if (tip) wx.showToast({ title: `网络错误：${res.statusCode}`, icon: 'none' })
           reject(res.data)
         }
       },
       fail(err) {
-        console.log('接口调用失败')
+        if (tip) wx.showToast({ title: '接口调用失败', icon: 'none' })
         reject(err)
       },
       complete() {
@@ -37,16 +39,18 @@ const request = ({url, method = 'get', data = {}}) => {
   })
 }
 
+const request = {}
+
 // 获取当前热搜
-const get_realtime_hot = () => {
-  return request({
+request.fetchRealtimeHotwords = () => {
+  return wxRequest({
     url: 'realtimehot'
   })
 }
 
 // 搜索热搜
-const search_keyword = (keyword) => {
-  return request({
+request.searchKeyword = keyword => {
+  return wxRequest({
     url: 'search/keyword',
     data: {
       keyword
@@ -54,7 +58,4 @@ const search_keyword = (keyword) => {
   })
 }
 
-export {
-  get_realtime_hot,
-  search_keyword
-}
+export default request

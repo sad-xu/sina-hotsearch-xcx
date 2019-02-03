@@ -1,36 +1,18 @@
 <!--pages/index/index.wxml-->
-<view class="wrapper" 
-  bind:touchstart="touchStart"
-  bind:touchmove="touchMove"
-  bind:touchend="touchEnd">
-  <!-- search -->
-  <view class="search-wrapper">
-    <input class="{{showModal ? 'input-focus' : ''}}"
-      placeholder="{{placeholderText}}" maxlength="10" confirm-type="search"
-      bindinput="bindInput" bindfocus="bindFocus" 
-      bindconfirm="bindConfirm">
-    </input>
-    <text class="{{showModal ? 'text-focus' : ''}}" bindtap="cancleInput">取消</text>
-  </view>
-  <!-- 搜索模态窗 -->
-  <view id="modal" class="{{showModal ? 'show-modal' : ''}}">
-    <view class="search-result">
-      <text wx:for="{{keywordList}}" wx:key="item._id">{{item.desc}}</text>
-    </view>
-  </view>
+<view class="wrapper">
+  <!-- 最新50条热搜 -->
+  <text class="update-time">{{updateTime}}更新</text>
 
-  <!-- hotsearch -->
-  <view class="{{showModal ? 'blur' : ''}}">
-    <view wx:if="{{status === 'rendering'}}" id="hot-wrapper">
-      <view wx:for="{{hotList}}" wx:key="item.desc">
-        <text class="hot-index">{{index+1}}</text>
-        <text class="hot-desc">{{item.desc}}</text>
-        <text class="hot-num">{{item.n}}</text>
-      </view>
+  <scroll-view 
+    class="list-wrapper"
+    scroll-y
+    enable-back-to-top
+    style="height:{{scrollHeight}}px;">
+    <view class="list-item" wx:for="{{hotList}}" wx:key="desc">
+      <text class="item-index">{{index + 1}}</text>
+      <text class="item-desc">{{item.desc}}</text>
+      <text class="item-n">{{item.n}}</text>
     </view>
-    <view wx:if="{{status === 'error'}}">出错了出错了出错了</view>
-  </view>
-
-  <!-- test -->
-  <view style="height:700px;">11</view>
+    <text class="tip">人是会思考的芦苇</text>
+  </scroll-view>
 </view>

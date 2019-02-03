@@ -6,6 +6,20 @@
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "热搜分析师"
+    "navigationBarTitleText": "热搜分析师",
+    "backgroundColor": "#f8f8f8"
+  },
+  "tabBar": {
+    "backgroundColor": "#f7f7fa",
+    "selectedColor": "#09bb07",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "现在"
+      }, {
+        "pagePath": "pages/index/index",
+        "text": "过去"
+      }
+    ]
   }
 }
