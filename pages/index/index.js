@@ -21,6 +21,13 @@ Page({
         updateTime: new Date(res.time * 1000).toTimeString().slice(0, 5)
       })
     }).catch(err => console.log(err))
-  }
+  },
+  // 跳转到详情页
+  jumpToDetail(e) {
+    let desc = e.currentTarget.dataset.desc
+    wx.navigateTo({
+      url: `../analysis/analysis?type=desc&desc=${desc}`
+    })
+  },
 })
 

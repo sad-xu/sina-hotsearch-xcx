@@ -31,6 +31,8 @@
   width: 100rpx;
   font-size: 32rpx;
   text-align: center;
+  font-style:oblique;
+  font-weight:bold;
 }
 .list-item .item-desc {
   width: 450rpx;

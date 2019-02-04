@@ -2,7 +2,7 @@
 // const URL = 'http://127.0.0.1:8021/api/'
 const URL = 'http://192.168.0.104:8021/api/'
 
-const wxRequest = ({url, method = 'get', data = {}}, {loading = true, tip = true} = {}) => {
+const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true} = {}) => {
   if (loading) wx.showLoading({title: 'loading...', mask: true})
   return new Promise((resolve, reject) => {
     wx.request({
@@ -41,21 +41,42 @@ const wxRequest = ({url, method = 'get', data = {}}, {loading = true, tip = true
 
 const request = {}
 
-// 获取当前热搜
+
+/**
+ * 获取当前热搜
+ */
 request.fetchRealtimeHotwords = () => {
   return wxRequest({
     url: 'realtimehot'
   })
 }
 
-// 搜索热搜
+/**
+ * 搜索热搜
+ */
 request.searchKeyword = keyword => {
   return wxRequest({
-    url: 'search/keyword',
+    url: 'search_by_keyword',
     data: {
       keyword
     }
   })
 }
+
+/**
+ * 历史数据
+ * desc [desc1, desc2, ...]
+ * 
+ */
+request.fetchHistoryDataByDesc = desc => {
+  return wxRequest({
+    url: 'historydata_by_desc',
+    method: 'POST',
+    data: {
+      desc
+    }
+  })
+}
+
 
 export default request

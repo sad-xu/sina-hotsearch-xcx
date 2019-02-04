@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/analysis/analysis"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -16,7 +17,8 @@
       {
         "pagePath": "pages/index/index",
         "text": "现在"
-      }, {
+      },
+      {
         "pagePath": "pages/index/index",
         "text": "过去"
       }

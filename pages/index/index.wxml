@@ -8,7 +8,12 @@
     scroll-y
     enable-back-to-top
     style="height:{{scrollHeight}}px;">
-    <view class="list-item" wx:for="{{hotList}}" wx:key="desc">
+    <view 
+      class="list-item" 
+      wx:for="{{hotList}}" 
+      wx:key="desc"
+      data-desc="{{item.desc}}"
+      bindtap="jumpToDetail">
       <text class="item-index">{{index + 1}}</text>
       <text class="item-desc">{{item.desc}}</text>
       <text class="item-n">{{item.n}}</text>

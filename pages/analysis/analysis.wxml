@@ -1,0 +1,4 @@
+<!--pages/analysis/analysis.wxml-->
+<view class="wrapper">
+  detail
+</view>
