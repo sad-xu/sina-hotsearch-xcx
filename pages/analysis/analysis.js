@@ -9,7 +9,9 @@ import request from '../../utils/request.js'
  * case2: [_id1, _id2, ...]  搜索页根据_id查询
  * 
  */
-// console.log(echarts)
+
+// TODO: 加虚线
+
 
 let pageOption = {}
 
@@ -32,59 +34,48 @@ Page({
 
     }
   },
-  // init desc
+  // init desc     'desc1,desc2,desc3...'
   initDesc(desc) {
+    // desc = '王思聪,知否知否'
     request.fetchHistoryDataByDesc(desc.split(',')).then(res => {
-      console.log(res)
-      let chartData = [], xAxisData = []
+      let chartData = []
+      // 生成x轴数据 遍历所有数据的时间，得到所有数据的时间列表xAxisData
+      let xAxisData= new Set()
       res.forEach(line => {
+        line.timeline.forEach(item => {
+          xAxisData.add(item.t)
+        })
+      })
+      xAxisData = Array.from(xAxisData).sort((a, b) => a - b)
+      let xAxisMap = {}  // 映射
+      xAxisData.forEach((t, i) => {
+        xAxisMap[t] = i
+      })
+      // 生成y轴数据
+      res.forEach(line => {
+        let yAxisdata = Array.from({ length: xAxisData.length }) // [undefined, ...]
         let timeline = line.timeline, desc = line.desc
+        timeline.forEach(item => {
+          yAxisdata[xAxisMap[item.t]] = item.n
+        })
         chartData.push({
           name: desc,
           type: 'line',
           showSymbol: false,
-          data: timeline.map(item => {
-            xAxisData.push(item.t)
-            return [item.t, item.n]
-          })
+          data: yAxisdata
         })
       })
-      // res.forEach(line => {
-      //   let timeline = line.timeline, desc = line.desc
-      //   // 先分段
-      //   let timeQuantum = []
-      //   timeline.forEach((point, index) => {
-      //     let t = point.t * 1000, 
-      //         n = point.n,
-      //         lastTime = index === 0 ? 0 : timeline[index - 1].t * 1000
-      //     if (t - lastTime > 43200000) {  // 分段  间隔大于12小时
-      //       timeQuantum.push([[t, n]])
-      //     } else {  // 正常
-      //       timeQuantum[timeQuantum.length - 1].push([t, n])
-      //     }
-      //   })
-      //   // 
-      //   timeQuantum.forEach(item => {
-      //     chartData.push({
-      //       name: desc,
-      //       type: 'line',
-      //       showSymbol: false,
-      //       data: item
-      //     })
-      //   })
-      //   console.log(timeQuantum)
-      // })
-      this.drawChart(chartData)
+      this.drawChart(chartData, xAxisData)
     }).catch(err => console.log(err))
   },
   // draw chart 
   drawChart(chartData, xAxisData) {
+    console.log(chartData, xAxisData)
     let startValue = null, endValue = null  // 初始范围
-    if (chartData.length > 100) {
-      startValue = chartData.length - 101
-      endValue = chartData.length - 1
-    }
-
+    // if (chartData.length > 100) {
+    //   startValue = chartData.length - 101
+    //   endValue = chartData.length - 1
+    // }
     this.ecComponent.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
@@ -105,9 +96,12 @@ Page({
           bottom: 40,
           containLabel: true
         },
-        tooltip: {
+        // 有bug https://github.com/ecomfe/echarts-for-weixin/issues/447
+        tooltip: {  
           show: true,
-          trigger: 'axis'
+          trigger: 'axis',
+          renderMode: 'richText',
+          // confine: true,  
         },
         dataZoom: [{
           type: 'inside',
@@ -122,9 +116,18 @@ Page({
         }],
         xAxis: {
           type: 'category',
-          // data: xAxisData,
+          data: xAxisData.map(time => new Date(time * 1000 + 28800000).toISOString().slice(0, 16).replace('T', '\n')),
           splitLine: {
             show: false
+          },
+          axisTick: {
+            alignWithLabel: true
+          },
+          axisLabel: {
+            formatter(value, index) {
+              if (index === 0) return value
+              else return value.slice(5)
+            }
           }
         },
         yAxis: {
@@ -143,6 +146,17 @@ Page({
           }
         },
         series: chartData
+      })
+      // 图例变化事件  至少保留一个图例
+      chart.on('legendselectchanged', function(params) {
+        if (Object.values(params.selected).every(item => item === false)) {
+          params.selected[params.name] = true
+          this.setOption({
+            legend: {
+              selected: params.selected
+            }
+          })
+        }
       })
       return chart
     })
