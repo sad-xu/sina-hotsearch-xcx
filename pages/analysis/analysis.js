@@ -62,7 +62,17 @@ Page({
           name: desc,
           type: 'line',
           showSymbol: false,
+          smooth: true,
           data: yAxisdata
+        })
+        chartData.push({   // 补偿数据
+          name: desc,
+          type: 'line',
+          symbol: 'none',
+          lineStyle: {
+            width: 0
+          },
+          data: yAxisdata.map(item => item ? undefined : 0)
         })
       })
       this.drawChart(chartData, xAxisData)
@@ -90,7 +100,7 @@ Page({
           z: 100
         },
         grid: {
-          left: 10,
+          left: 5,
           top: 40,
           right: 10,
           bottom: 40,
@@ -100,8 +110,21 @@ Page({
         tooltip: {  
           show: true,
           trigger: 'axis',
-          renderMode: 'richText',
-          // confine: true,  
+          backgroundColor: 'rgba(255,255,255,0)',
+          textStyle: {
+            color: '#777',
+          },
+          position: [48, 40],
+          // confine: true,
+          formatter: params => {  // 多条数据，排序
+            let arr = []
+            params.forEach(item => {
+              if (item.value) { // ●
+                arr.push([`${item.seriesName}: ${item.value}`, item.value])
+              }
+            })
+            return arr.sort((a, b) => a[1] - b[1]).map(item => item[0]).join('\n')
+          }
         },
         dataZoom: [{
           type: 'inside',
@@ -128,10 +151,17 @@ Page({
               if (index === 0) return value
               else return value.slice(5)
             }
+          },
+          axisPointer: {
+            show: true,
+            label: {
+              show: true,
+              padding: [4, 7, 4, 7],
+              backgroundColor: '#7a7a7a'
+            }
           }
         },
         yAxis: {
-          // name: '热度',
           type: 'value',
           splitLine: {
             lineStyle: {
@@ -141,7 +171,9 @@ Page({
           axisLabel: {
             formatter: (v, i) => {
               if (v === 0) return 0
-              else return `${ v / 1000 }k` 
+              else if (v < 100000) return `   ${v / 1000}k`
+              else if (v >= 1000000) return `${ v / 10000}w`
+              else return ` ${ v / 1000 }k`
             }
           }
         },

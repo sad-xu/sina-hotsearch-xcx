@@ -8,4 +8,9 @@
   box-sizing: border-box;
 }
 
+/* #mychart-dom-line {
+  width: 320px;
+  height: 504px;
+} */
+
 
