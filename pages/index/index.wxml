@@ -1,13 +1,13 @@
 <!--pages/index/index.wxml-->
 <view class="wrapper">
   <!-- 最新50条热搜 -->
-  <text class="update-time">{{updateTime}}更新</text>
-
+  <!-- <text class="update-time">{{updateTime}}更新</text> -->
+<!-- 
   <scroll-view 
     class="list-wrapper"
     scroll-y
     enable-back-to-top
-    style="height:{{scrollHeight}}px;">
+    style="height:{{scrollHeight}}px;"> -->
     <view 
       class="list-item" 
       wx:for="{{hotList}}" 
@@ -19,5 +19,5 @@
       <text class="item-n">{{item.n}}</text>
     </view>
     <text class="tip">人是会思考的芦苇</text>
-  </scroll-view>
+  <!-- </scroll-view> -->
 </view>

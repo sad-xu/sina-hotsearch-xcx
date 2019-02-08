@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/analysis/analysis"
+    "pages/analysis/analysis",
+    "pages/search/search"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -19,8 +20,12 @@
         "text": "现在"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/search/search",
         "text": "过去"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "未来"
       }
     ]
   }

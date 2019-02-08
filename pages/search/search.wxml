@@ -1,0 +1,21 @@
+<!--pages/search/search.wxml-->
+<view class="wrapper">
+  <!-- 搜索  -->
+  <view class='input-wrapper'>
+    <icon type="search" size="40rpx"></icon>
+    <input
+      id="input"
+      placeholder="{{placeHolder}}"
+      maxlength="20"
+      confirm-type="search"
+      bindfocus="bindFocus"
+      bindblur="bindBlur"
+      bindinput="bindInput"
+      bindconfirm="bindConfirm">
+    </input>
+  </view>
+  <!-- 昨日 / 三日前 / 七日前 此刻热搜  -->
+  <!-- <view>
+  
+  </view> -->
+</view>

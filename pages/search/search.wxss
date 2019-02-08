@@ -1,0 +1,28 @@
+/* pages/search/search.wxss */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f8f8f8;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 60rpx 60rpx 0;
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+.input-wrapper input {
+  width: 100%;
+  font-size: 32rpx;
+  padding-left: 20rpx;
+}
+
+
+
