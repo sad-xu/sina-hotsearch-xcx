@@ -1,8 +1,20 @@
 .wrapper {
-
+  background-color: #fff;
 }
 
-.update-time {
+.top-tip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: #999;
+  z-index: -1;
+}
+
+/* .update-time {
   display: block;
   height: 50rpx;
   line-height: 50rpx;
@@ -13,9 +25,7 @@
   text-align: right;
 }
 
-.list-wrapper {
-
-}
+*/
 
 
 .list-item {
@@ -47,7 +57,7 @@
   text-align: center;
 }
 
-.tip {
+.bottom-tip {
   display: block;
   font-size: 28rpx;
   height: 80rpx;

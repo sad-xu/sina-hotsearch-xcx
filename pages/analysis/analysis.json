@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "历史分析",
+  "navigationBarTitleText": "历史走势",
   "disableScroll": true,
   "usingComponents": {
     "ec-canvas": "../../components/ec-canvas/ec-canvas"

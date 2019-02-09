@@ -2,8 +2,9 @@
 // const URL = 'http://127.0.0.1:8021/api/'
 const URL = 'http://192.168.0.104:8021/api/'
 
-const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true} = {}) => {
+const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true, navLoading = false} = {}) => {
   if (loading) wx.showLoading({title: 'loading...', mask: true})
+  if (navLoading) wx.showNavigationBarLoading()
   return new Promise((resolve, reject) => {
     wx.request({
       url: URL + url,
@@ -33,7 +34,8 @@ const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true
         reject(err)
       },
       complete() {
-        wx.hideLoading()        
+        if (loading) wx.hideLoading()
+        if (navLoading) wx.hideNavigationBarLoading()    
       }
     })
   })
@@ -60,6 +62,9 @@ request.searchKeyword = keyword => {
     data: {
       keyword
     }
+  }, {
+    loading: false,
+    navLoading: true
   })
 }
 

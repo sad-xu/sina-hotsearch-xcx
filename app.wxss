@@ -1,6 +1,5 @@
 /**app.wxss**/
 .wrapper {
   position: relative;
-  background-color: #fff;
 }
 

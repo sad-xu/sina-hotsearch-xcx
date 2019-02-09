@@ -2,7 +2,7 @@
 <view class="wrapper">
   <!-- 搜索  -->
   <view class='input-wrapper'>
-    <icon type="search" size="40rpx"></icon>
+    <icon type="search" size="46rpx"></icon>
     <input
       id="input"
       placeholder="{{placeHolder}}"
@@ -14,8 +14,49 @@
       bindconfirm="bindConfirm">
     </input>
   </view>
+
+
+
+  <!-- 搜索结果 -->
+  <view 
+    class="result-wrapper {{showSearch ? '' : 'hide'}}">
+    <!-- style="max-height:{{maxHeight}}%"> -->
+      <!-- style="height:{{itemHeight}}px" -->
+    
+    <view 
+      class="result-item"
+      wx:for="{{searchList}}"
+      wx:key="{{_id}}">
+      <text class="item-text" 
+        data-_id="{{item._id}}" data-desc="{{item.desc}}" 
+        bindtap="selectEvent">{{item.desc}}</text>
+      <icon class="item-icon" type="clear" size="32rpx" />
+    </view>
+  </view>
+
+  <!-- 已选项  -->
+  <view class="chosed-wrapper">
+
+  </view>
+
+
+
   <!-- 昨日 / 三日前 / 七日前 此刻热搜  -->
-  <!-- <view>
-  
-  </view> -->
+  <view 
+    class="result-wrapper {{showSearch ? 'hide' : ''}}">
+    <!-- style="max-height:{{maxHeight}}%"> -->
+          <!-- style="height:{{itemHeight}}px" -->
+    <view 
+      class="result-item"
+      wx:for="{{recommendList}}"
+      wx:key="{{_id}}">
+      <text class="item-text" 
+        data-_id="{{item._id}}" data-desc="{{item.desc}}" 
+        bindtap="selectEvent">{{item.desc}}</text>
+      <icon class="item-icon" type="clear" size="32rpx" />
+    </view>
+  </view>
+
+  <!-- 留白 TODO: 换一批 -->
+  <view style="height:100rpx;"></view>
 </view>
