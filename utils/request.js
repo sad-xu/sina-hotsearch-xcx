@@ -83,5 +83,20 @@ request.fetchHistoryDataByDesc = desc => {
   })
 }
 
+/**
+ * 历史数据
+ * _id [_id1, _id2, ...]
+ * 
+ */
+request.fetchHistoryDataById = _id => {
+  return wxRequest({
+    url: 'historydata_by_id',
+    method: 'POST',
+    data: {
+      _id
+    }
+  })
+}
+
 
 export default request

@@ -19,10 +19,7 @@
 
   <!-- 搜索结果 -->
   <view 
-    class="result-wrapper {{showSearch ? '' : 'hide'}}">
-    <!-- style="max-height:{{maxHeight}}%"> -->
-      <!-- style="height:{{itemHeight}}px" -->
-    
+    class="result-wrapper search-result {{showSearch ? '' : 'hide'}}">
     <view 
       class="result-item"
       wx:for="{{searchList}}"
@@ -30,33 +27,72 @@
       <text class="item-text" 
         data-_id="{{item._id}}" data-desc="{{item.desc}}" 
         bindtap="selectEvent">{{item.desc}}</text>
-      <icon class="item-icon" type="clear" size="32rpx" />
+      <!-- 添加/移除 -->
+      <text 
+        wx:if="{{chosedMap[item._id]}}" 
+        class="iconfont icon-ok item-icon"
+        data-_id="{{item._id}}" 
+        catchtap="iconRemove"></text>
+      <text 
+        wx:else 
+        class="iconfont icon-add item-icon"
+        data-_id="{{item._id}}" data-desc="{{item.desc}}" 
+        catchtap="iconAdd"></text>
     </view>
   </view>
 
-  <!-- 已选项  -->
-  <view class="chosed-wrapper">
-
-  </view>
 
 
 
   <!-- 昨日 / 三日前 / 七日前 此刻热搜  -->
-  <view 
-    class="result-wrapper {{showSearch ? 'hide' : ''}}">
-    <!-- style="max-height:{{maxHeight}}%"> -->
-          <!-- style="height:{{itemHeight}}px" -->
+  <view class="result-wrapper recommend-wrapper {{showSearch ? 'hide' : ''}}">
+    <text hidden="{{showSearch}}" class="recommmend-title">推荐热点</text>
     <view 
       class="result-item"
       wx:for="{{recommendList}}"
       wx:key="{{_id}}">
       <text class="item-text" 
         data-_id="{{item._id}}" data-desc="{{item.desc}}" 
-        bindtap="selectEvent">{{item.desc}}</text>
-      <icon class="item-icon" type="clear" size="32rpx" />
+        catchtap="selectEvent">{{item.desc}}</text>
+      <!-- 添加/移除 -->
+      <text 
+        wx:if="{{chosedMap[item._id]}}" 
+        class="iconfont icon-ok item-icon"
+        data-_id="{{item._id}}" 
+        catchtap="iconRemove"></text>
+      <text 
+        wx:else 
+        class="iconfont icon-add item-icon"
+        data-_id="{{item._id}}" data-desc="{{item.desc}}" 
+        catchtap="iconAdd"></text>
     </view>
   </view>
 
   <!-- 留白 TODO: 换一批 -->
-  <view style="height:100rpx;"></view>
+  <!-- <view 
+    hidden="{{showSearch}}" 
+    style="height:100rpx;">
+    <text>换一批</text>
+  </view> -->
+
+
+    <!-- 已选项  -->
+  <view hidden="{{!chosedList.length}}" class="chosed-wrapper">
+    <view class="chosed-content">
+      <view 
+        class="chosed-item" 
+        wx:for="{{chosedList}}" 
+        wx:key="{{_id}}"
+        data-_id="{{item._id}}" 
+        catchtap="iconRemove">
+        <text>{{item.desc}}</text>  
+        <icon type="clear" size="28rpx"></icon>
+      </view>
+    </view>
+    <view class="button-wrapper">
+      <button type="primary" bindtap="startAnalyse">开始分析</button>
+    </view>
+  </view>
+
+  <view style="height:60rpx;"></view>
 </view>

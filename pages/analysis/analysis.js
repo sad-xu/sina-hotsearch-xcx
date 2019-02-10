@@ -11,7 +11,7 @@ import request from '../../utils/request.js'
  */
 
 // TODO: 加虚线
-
+console.log(echarts)
 
 let pageOption = {}
 
@@ -27,56 +27,57 @@ Page({
   },
   onReady: function () {
     this.ecComponent = this.selectComponent('#mychart-dom-line')
-    let {type, desc} = pageOption
-    if (type === 'desc') {
-      this.initDesc(desc)
+    let type = pageOption.type
+    if (type === 'desc') { // 'desc1,desc2,desc3...'
+      request.fetchHistoryDataByDesc(pageOption.desc.split(',')).then(res => {
+        this.init(res)
+      }).catch(err => console.log(err))
     } else if (type === '_id') {
-
+      request.fetchHistoryDataById(pageOption._id.split(',')).then(res => {
+        this.init(res)
+      }).catch(err => console.log(err))
     }
   },
-  // init desc     'desc1,desc2,desc3...'
-  initDesc(desc) {
-    // desc = '王思聪,知否知否'
-    request.fetchHistoryDataByDesc(desc.split(',')).then(res => {
-      let chartData = []
-      // 生成x轴数据 遍历所有数据的时间，得到所有数据的时间列表xAxisData
-      let xAxisData= new Set()
-      res.forEach(line => {
-        line.timeline.forEach(item => {
-          xAxisData.add(item.t)
-        })
+  // init desc     
+  init(data) {
+    let chartData = []
+    // 生成x轴数据 遍历所有数据的时间，得到所有数据的时间列表xAxisData
+    let xAxisData= new Set()
+    data.forEach(line => {
+      line.timeline.forEach(item => {
+        xAxisData.add(item.t)
       })
-      xAxisData = Array.from(xAxisData).sort((a, b) => a - b)
-      let xAxisMap = {}  // 映射
-      xAxisData.forEach((t, i) => {
-        xAxisMap[t] = i
+    })
+    xAxisData = Array.from(xAxisData).sort((a, b) => a - b)
+    let xAxisMap = {}  // 映射
+    xAxisData.forEach((t, i) => {
+      xAxisMap[t] = i
+    })
+    // 生成y轴数据
+    data.forEach(line => {
+      let yAxisdata = Array.from({ length: xAxisData.length }) // [undefined, ...]
+      let timeline = line.timeline, desc = line.desc
+      timeline.forEach(item => {
+        yAxisdata[xAxisMap[item.t]] = item.n
       })
-      // 生成y轴数据
-      res.forEach(line => {
-        let yAxisdata = Array.from({ length: xAxisData.length }) // [undefined, ...]
-        let timeline = line.timeline, desc = line.desc
-        timeline.forEach(item => {
-          yAxisdata[xAxisMap[item.t]] = item.n
-        })
-        chartData.push({
-          name: desc,
-          type: 'line',
-          showSymbol: false,
-          smooth: true,
-          data: yAxisdata
-        })
-        chartData.push({   // 补偿数据
-          name: desc,
-          type: 'line',
-          symbol: 'none',
-          lineStyle: {
-            width: 0
-          },
-          data: yAxisdata.map(item => item ? undefined : 0)
-        })
+      chartData.push({
+        name: desc,
+        type: 'line',
+        showSymbol: false,
+        smooth: true,
+        data: yAxisdata
       })
-      this.drawChart(chartData, xAxisData)
-    }).catch(err => console.log(err))
+      chartData.push({   // 补偿数据
+        name: desc,
+        type: 'line',
+        symbol: 'none',
+        lineStyle: {
+          width: 0
+        },
+        data: yAxisdata.map(item => item ? undefined : 0)
+      })
+    })
+    this.drawChart(chartData, xAxisData)
   },
   // draw chart 
   drawChart(chartData, xAxisData) {
@@ -123,20 +124,23 @@ Page({
                 arr.push([`${item.seriesName}: ${item.value}`, item.value])
               }
             })
-            return arr.sort((a, b) => a[1] - b[1]).map(item => item[0]).join('\n')
+            return arr.sort((a, b) => b[1] - a[1]).map(item => item[0]).join('\n')
           }
         },
-        dataZoom: [{
-          type: 'inside',
-          startValue: startValue,
-          endValue: endValue,
-          minSpan: 1
-        }, {
-          type: 'slider',
-          startValue: startValue,
-          endValue: endValue,
-          minSpan: 1
-        }],
+        dataZoom: [
+          // {
+          // type: 'inside',
+          // startValue: startValue,
+          // endValue: endValue,
+          // minSpan: 1
+          // }, 
+          {
+            type: 'slider',
+            startValue: startValue,
+            endValue: endValue,
+            minSpan: 1
+          }
+        ],
         xAxis: {
           type: 'category',
           data: xAxisData.map(time => new Date(time * 1000 + 28800000).toISOString().slice(0, 16).replace('T', '\n')),

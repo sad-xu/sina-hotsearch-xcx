@@ -3,3 +3,35 @@
   position: relative;
 }
 
+/* ICON */
+@font-face {
+  font-family: 'iconfont';  /* project id 1039169 */
+  src: url('//at.alicdn.com/t/font_1039169_iqru8y8rb7.eot');
+  src: url('//at.alicdn.com/t/font_1039169_iqru8y8rb7.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1039169_iqru8y8rb7.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1039169_iqru8y8rb7.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1039169_iqru8y8rb7.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1039169_iqru8y8rb7.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 28rpx;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-resoufenxi:before {
+  content: "\e600";
+}
+
+.icon-add:before {
+  content: "\e601";
+}
+
+.icon-ok:before {
+  content: "\e602";
+}
+
+
