@@ -1,13 +1,12 @@
 // pages/search/search.js
 import request from '../../utils/request.js'
-
 // const app = getApp()
 
 /**
  * TODO:
- *  1. chart 多个图例怎么弄
- *  2. 搜索，推荐接入真正的接口
- *  3. 搜索debounce实现
+ *  1. chart 多个图例怎么弄      √
+ *  2. 搜索，推荐接入真正的接口   1 / 2
+ *  3. 搜索debounce实现         √
  *  4. 首页样式优化
  *  5. tarbar图片
  *  6. 未来页 放什么
@@ -39,6 +38,8 @@ let searchList = [
   { "_id": "5c336e20e019dacd5a05a6c8", "desc": "小智喷王思聪" }
 ]
 
+let timer  // 去抖定时器id
+
 Page({
   data: {
     // 单条高度  -- 不同设备 底部统一留白100rpx
@@ -60,7 +61,6 @@ Page({
   },
   // 搜索框得焦 
   bindFocus(e) {
-    console.log('focus:', e)
     if (!e.detail.value.length) {
       this.setData({
         placeHolder: ''
@@ -69,7 +69,6 @@ Page({
   },
   // 输入框失焦
   bindBlur(e) {
-    console.log('blur:', e)
     if (!e.detail.value.length) {
       this.setData({
         placeHolder: '关键词搜索'
@@ -78,31 +77,24 @@ Page({
   },
   // 搜索框输入
   bindInput(e) {
-    console.log('input:', e)
     let inputValue = e.detail.value
     this.setData({
       inputValue: inputValue
     })
     if (inputValue.trim().length) {  // 有输入 调接口 + debounce
-      // request.searchKeyword('徐').then(res => {
-      //   if (res.length) {
-          this.setData({
-            showSearch: true,
-            searchList: [
-              { "_id": "5c3d4350e019dacd5a05aa7b", "desc": "MACx王者荣耀" },
-              { "_id": "5c2a5b78e019dacd5a05a326", "desc": "三亚偶遇王思聪" },
-              { "_id": "5c37d1f4e019dacd5a05a87d", "desc": "中国萌娃请愿英国女王" },
-              { "_id": "5c3bfa04e019dacd5a05a9fa", "desc": "信小呆 锦鲤大王" },
-              { "_id": "5c54f040e019dacd5a05b38b", "desc": "吴秀波王牌画面被全删" },
-              { "_id": "5c3af384e019dacd5a05a9a5", "desc": "周杰伦赞王嘉尔改编版安静" },
-              { "_id": "5c5450e0e019dacd5a05b35a", "desc": "国王杯皇马遭遇巴萨" },
-              { "_id": "5c3b54c8e019dacd5a05a9d1", "desc": "导演徐涵diss王源粉丝" },
-              { "_id": "5c3bcc50e019dacd5a05a9dd", "desc": "导演徐涵向王源道歉" },
-              { "_id": "5c336e20e019dacd5a05a6c8", "desc": "小智喷王思聪" }
-            ]
-          })
-      //   }
-      // }).catch(err => console.log(err))
+      const that = this 
+      if (timer) clearTimeout(timer)
+      timer = setTimeout(function () {
+        timer = null
+        request.searchKeyword(inputValue.trim()).then(res => {
+          if (res.length) {
+            that.setData({
+              showSearch: true,
+              searchList: res
+            })
+          }
+        }).catch(err => console.log(err))
+      }, 300)
     } else { // 无输入  清空
       this.setData({
         showSearch: false
@@ -125,7 +117,7 @@ Page({
     if (!this.data.chosedMap[_id]) {
       if (this.data.chosedList.length >= 6) {  // 上限6个
         wx.showToast({
-          title: '最多添加6个热点',
+          title: '亲亲,这边最多同时分析6条热搜呢',
           icon: 'none'
         })
       } else {

@@ -97,7 +97,10 @@ Page({
           show: false
         },
         legend: {
+          type: 'scroll',
           top: 0,
+          // left: '10%',
+          // right: '10%',
           z: 100
         },
         grid: {

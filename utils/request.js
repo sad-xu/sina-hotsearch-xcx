@@ -1,6 +1,6 @@
 // 请求
 // const URL = 'http://127.0.0.1:8021/api/'
-const URL = 'http://192.168.0.104:8021/api/'
+const URL = 'http://192.168.0.100:8021/api/'
 
 const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true, navLoading = false} = {}) => {
   if (loading) wx.showLoading({title: 'loading...', mask: true})
