@@ -1,8 +1,7 @@
 <!--pages/index/index.wxml-->
-<text class="top-tip">{{updateTime}}更新</text>
+<text class="top-tip" hidden="{{!undateTime}}">{{updateTime}}更新</text>
 <view class="wrapper">
   <!-- 最新50条热搜 -->
-  <!-- <text class="update-time">{{updateTime}}更新</text> -->
   <view>
     <view 
       class="list-item" 
@@ -16,4 +15,4 @@
     </view>
   </view>
 </view>
-<text class="bottom-tip">人是会思考的芦苇</text>
+<text class="bottom-tip">{{tip}}</text>

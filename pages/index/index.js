@@ -4,11 +4,18 @@ import util from '../../utils/util.js'
 
 const app = getApp()
 
+const tipArr = [
+  '人是会思考的芦苇',
+  '1212121',
+  'rrrrrrr'
+]
+
 Page({
   data: {
     updateTime: '',
     hotList: [],  // [{desc, n}]
-    scrollHeight: app.systemInfo.height - 50 / app.systemInfo.rpxRatio
+    tip: tipArr[Math.floor(Math.random() * tipArr.length)]
+    // scrollHeight: app.systemInfo.height - 50 / app.systemInfo.rpxRatio
   },
   onLoad() {
     this.init()
