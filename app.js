@@ -1,5 +1,5 @@
 //app.js
-
+import request from './utils/request.js'
 /**
  * TODO:
  *  1. chart 多个图例怎么弄      √
@@ -13,14 +13,10 @@
  */
 
 App({
-  // 系统信息
-  // systemInfo: {
-  //   height: 555,
-  //   width: 375,
-  //   rpxRatio: 2
-  // },
   onLaunch() {
-    // this.initSystemInfo()
+    if (!wx.getStorageSync('token')) {
+      request.doLogin().then(() => console.log('首次登陆成功'))      
+    }
   },
   onError(err) {
     console.log('appErr: ', err)

@@ -1,6 +1,7 @@
 // 请求
 // const URL = 'http://127.0.0.1:8021/api/'
-const URL = 'http://192.168.0.101:8021/api/'
+const URL = 'http://192.168.0.101:8021/'
+const apiUrl = 'api/'
 
 const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true, navLoading = false} = {}) => {
   if (loading) wx.showLoading({title: 'loading...', mask: true})
@@ -9,20 +10,27 @@ const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true
     wx.request({
       url: URL + url,
       method,
+      header: {
+        'sadtoken': wx.getStorageSync('token')
+      },
       data,
       success(res) {
         if ((res.statusCode >= 200 && res.statusCode < 300) || res.statusCode === 304) {
-          let data = res.data
-          if (data.err === 0) {
-            resolve(data.data)
+          let { err, errmsg, data } = res.data
+          if (err === 0) {
+            resolve(data)
+          } else if (err === 999 || err === 998) {  // token失效 重新登录
+            doLogin().then(() => {
+              resolve(wxRequest({ url, method, data }, { loading, tip, navLoading }))
+            })
           } else {
             if (tip) {
               wx.showToast({
-                title: `errcode: ${data.err} ,msg: ${data.errmsg}`,
+                title: `errcode: ${err} ,msg: ${errmsg}`,
                 icon: 'none'
               })
             }
-            reject(data.errmsg)
+            reject(errmsg)
           }
         } else {
           if (tip) wx.showToast({ title: `网络错误：${res.statusCode}`, icon: 'none' })
@@ -43,13 +51,47 @@ const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true
 
 const request = {}
 
+/**
+ * login
+ */
+function doLogin() {
+  return new Promise((resolve, reject) => {
+    wx.login({
+      success(res) {
+        let code = res.code
+        if (code) {
+          wxRequest({
+            url: 'login',
+            method: 'POST',
+            data: {
+              code: code
+            }
+          }, {
+            loading: false,
+            tip: false,
+            navLoading: false
+          }).then(res => {
+            wx.setStorageSync('token', res)
+            resolve()
+          })
+        } else {
+          reject(res)
+        }
+      },
+      fail(err) {
+        reject(err)
+      }
+    })
+  })
+}
+request.doLogin = doLogin
 
 /**
  * 获取当前热搜
  */
 request.fetchRealtimeHotwords = () => {
   return wxRequest({
-    url: 'realtimehot'
+    url: apiUrl + 'realtimehot'
   })
 }
 
@@ -59,7 +101,7 @@ request.fetchRealtimeHotwords = () => {
  */
 request.fetchRecommendHotwords = () => {
   return wxRequest({
-    url: 'recommend'
+    url: apiUrl + 'recommend'
   }, {
     loading: false,
     navLoading: true
@@ -72,7 +114,7 @@ request.fetchRecommendHotwords = () => {
  */
 request.searchKeyword = keyword => {
   return wxRequest({
-    url: 'search_by_keyword',
+    url: apiUrl + 'search_by_keyword',
     data: {
       keyword
     }
@@ -89,7 +131,7 @@ request.searchKeyword = keyword => {
  */
 request.fetchHistoryDataByDesc = desc => {
   return wxRequest({
-    url: 'historydata_by_desc',
+    url: apiUrl + 'historydata_by_desc',
     method: 'POST',
     data: {
       desc
@@ -104,7 +146,7 @@ request.fetchHistoryDataByDesc = desc => {
  */
 request.fetchHistoryDataById = _id => {
   return wxRequest({
-    url: 'historydata_by_id',
+    url: apiUrl + 'historydata_by_id',
     method: 'POST',
     data: {
       _id
