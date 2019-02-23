@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/more/more",
     "pages/search/search",
     "pages/index/index",
-    "pages/analysis/analysis"
+    "pages/analysis/analysis",
+    "pages/leadboard/leadboard"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -17,15 +19,15 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "现在"
+        "text": "实时"
       },
       {
         "pagePath": "pages/search/search",
-        "text": "过去"
+        "text": "搜一搜"
       },
       {
-        "pagePath": "pages/search/search",
-        "text": "未来"
+        "pagePath": "pages/more/more",
+        "text": "更多"
       }
     ]
   }

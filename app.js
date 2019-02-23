@@ -10,6 +10,7 @@ import request from './utils/request.js'
  *  6. 未来页 放什么  '疯言疯语'
  *  7. 用户token
  *  8. 彩蛋
+ *  9. 推荐 无id bug
  */
 
 App({

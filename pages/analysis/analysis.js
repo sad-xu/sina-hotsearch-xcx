@@ -178,9 +178,10 @@ Page({
           axisLabel: {
             formatter: (v, i) => {
               if (v === 0) return 0
-              else if (v < 100000) return `   ${v / 1000}k`
-              else if (v >= 1000000) return `${ v / 10000}w`
-              else return ` ${ v / 1000 }k`
+              // else if (v < 100000) return `   ${v / 1000}k`
+              // else if (v >= 1000000) return `${ v / 10000}w`
+              // else return ` ${ v / 1000 }k`
+              return `${v / 1000000}M`
             }
           }
         },

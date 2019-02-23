@@ -1,0 +1,23 @@
+<!--pages/leadboard/leadboard.wxml-->
+<view class="wrapper">
+  <!-- 头部选项 -->
+  <view class="type-wrapper">
+    <view 
+      class="type-item {{index === selectedIndex ? 'type-selected' : ''}}"
+      wx:for="{{typeList}}" 
+      wx:key="type" 
+      data-type="{{item.type}}" data-index="{{index}}"
+      bindtap="bindChangeType">
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+  <!-- 列表数据 -->
+  <view>
+    <text>{{update}}</text>
+    <view 
+      wx:for="{{listData}}" 
+      wx:key="index">
+      {{item.desc}}{{item.n}}
+    </view>
+  </view>
+</view>

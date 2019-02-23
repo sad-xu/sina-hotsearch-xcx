@@ -15,8 +15,6 @@
     </input>
   </view>
 
-
-
   <!-- 搜索结果 -->
   <view 
     class="result-wrapper search-result {{showSearch ? '' : 'hide'}}">

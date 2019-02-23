@@ -1,6 +1,6 @@
 // pages/index/index.js
 import request from '../../utils/request.js'
-import util from '../../utils/util.js'
+// import util from '../../utils/util.js'
 
 const app = getApp()
 

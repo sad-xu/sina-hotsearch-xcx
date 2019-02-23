@@ -1,0 +1,24 @@
+/* pages/more/more.wxss */
+page {
+  background-color: #f8f8f8;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 50rpx;
+  padding-bottom: 60rpx;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 150rpx;
+  margin-top: 60rpx;
+  background-color: #eee;
+  border-radius: 10rpx;
+  box-shadow:0 2rpx 6rpx 0 rgba(0,0,0,0.1);
+}

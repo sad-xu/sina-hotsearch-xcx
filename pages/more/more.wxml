@@ -1,0 +1,10 @@
+<!--pages/more/more.wxml-->
+<view class="wrapper">
+  <view class="entry" 
+    wx:for="{{entries}}" 
+    wx:key="index"
+    data-url="{{item.url}}"
+    bindtap="jumpTo">
+    <text>{{item.name}}</text>
+  </view>
+</view>

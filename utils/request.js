@@ -154,5 +154,18 @@ request.fetchHistoryDataById = _id => {
   })
 }
 
+/**
+ * 排行榜 
+ * type: 'week' | 'month' | 'all'
+ */
+request.fetchLeadBoard = type => {
+  return wxRequest({
+    url: apiUrl + 'leadboard',
+    method: 'GET',
+    data: {
+      type
+    }
+  })
+}
 
 export default request
