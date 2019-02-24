@@ -8,7 +8,7 @@ Page({
       icon: ''
     }, {
       name: 'Commit Log',
-      url: '',
+      url: '../commitlog/commitlog',
       icon: ''
     }],
 

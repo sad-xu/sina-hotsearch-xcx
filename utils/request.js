@@ -168,4 +168,18 @@ request.fetchLeadBoard = type => {
   })
 }
 
+/**
+ * commit log
+ * type: "front" | "end"
+ */
+request.fetchCommitLog = type => {
+  return wxRequest({
+    url: apiUrl + 'commitlog',
+    method: 'GET',
+    data: {
+      type
+    }
+  })
+}
+
 export default request

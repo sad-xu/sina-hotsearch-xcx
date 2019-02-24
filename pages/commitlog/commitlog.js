@@ -1,19 +1,17 @@
-// pages/leadboard/leadboard.js
+// pages/commitlog/commitlog.js
 import request from '../../utils/request.js'
 
-let allData = {  // 全部数据
-  week: null, // { update: 1550938603471, data: [{ desc, n }, ...]}
-  month: null,
-  all: null
+let allData = {
+  back: null, // { update: '', data: [{time, msg}]}
+  front: null
 }
 
 Page({
   data: {
     selectedIndex: 0,
     typeList: [
-      { text: '周', type: 'week' },
-      { text: '月', type: 'month' },
-      { text: '全部', type: 'all' },
+      { text: '后端', type: 'back' },
+      { text: '前端', type: 'front' }
     ],
     update: '',
     listData: []
@@ -23,12 +21,22 @@ Page({
   },
   init(type) {
     if (!allData[type]) { // 无数据 请求
-      request.fetchLeadBoard(type).then(res => {
+      request.fetchCommitLog(type).then(res => {
         if (res) {
-          allData[type] = res
+          let update = res.update
+          let list = res.data.map(item => {
+            return { // 2019-01-02 
+              time: new Date(new Date(item.date).getTime() + 28800000).toISOString(),  
+              msg: item.msg
+            }
+          })
+          allData[type] = {
+            update: update,
+            data: list
+          }
           this.setData({
-            update: res.update,
-            listData: res.data
+            update: update,
+            listData: list
           })
         }
       })

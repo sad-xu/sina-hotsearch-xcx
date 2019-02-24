@@ -4,7 +4,8 @@
     "pages/search/search",
     "pages/index/index",
     "pages/analysis/analysis",
-    "pages/leadboard/leadboard"
+    "pages/leadboard/leadboard",
+    "pages/commitlog/commitlog"
   ],
   "window": {
     "navigationBarTextStyle": "black",
