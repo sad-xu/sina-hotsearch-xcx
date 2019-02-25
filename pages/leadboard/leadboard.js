@@ -45,5 +45,8 @@ Page({
       selectedIndex: index
     })
     this.init(type)
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
   }
 })
