@@ -7,7 +7,7 @@ page {
   display:flex;
   flex-direction:column;
   align-items:center;
-  padding-top: 100rpx;
+  padding-top: 90rpx;
 }
 
 /* 头部选项 */
@@ -19,6 +19,7 @@ page {
   display:flex;
   justify-content:center;
   background-color:#fff;
+  box-shadow:0 0rpx 10rpx 10rpx #ffffff;
 }
 .type-wrapper {
   display:flex;
@@ -29,7 +30,6 @@ page {
   box-shadow:0 2rpx 6rpx 0 rgba(0,0,0,0.1);
   border-radius:50px;
   margin-top:20rpx;
-  margin-bottom: 20rpx;
   background-color:#fff;
   z-index:9;
 }
@@ -71,6 +71,40 @@ page {
 }
 .item-wrapper {
   display: flex;
-  
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom:1px solid #e6e6e6;
+  background-color:#fff;
+}
+.item-index {
+  font-size: 40rpx;
+  width: 100rpx;
+  text-align: center;
+  font-style: italic;
+}
+.top-index {
+  color: #ff576b;
+  font-weight: bold;
+}
+.other-index {
+  color: #ffb642;
+}
+.item-desc {
+  font-size: 38rpx;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  padding-right: 20rpx;
+}
+.item-n {
+  font-size: 30rpx;
+  color: #939393;
+  padding-right:40rpx;
+}
+
+.icon-nodata {
+  font-size: 500rpx;
+  margin-top: 100rpx;
 }
 

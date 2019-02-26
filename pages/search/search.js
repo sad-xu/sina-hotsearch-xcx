@@ -76,23 +76,31 @@ Page({
   },
   // 选中某一事件 - 跳转到单条详情页
   selectEvent(e) {
-    wx.navigateTo({
-      url: `../analysis/analysis?type=_id&_id=${e.target.dataset._id}`
-    })
+    let data = e.currentTarget.dataset
+    console.log(data)
+    if (data._id) { // 搜索
+      wx.navigateTo({
+        url: `../analysis/analysis?type=_id&_id=${data._id}`
+      })
+    } else { // 推荐
+      wx.navigateTo({
+        url: `../analysis/analysis?type=desc&desc=${data.desc}`
+      })
+    }
   },
   // icon事件 - 添加
   iconAdd(e) {
-    let {_id, desc} = e.target.dataset
-    if (!this.data.chosedMap[_id]) {
+    let { desc} = e.target.dataset
+    if (!this.data.chosedMap[desc]) {
       if (this.data.chosedList.length >= 6) {  // 上限6个
         wx.showToast({
           title: '亲亲,这边最多同时分析6条热搜呢',
           icon: 'none'
         })
       } else {
-        let str = `chosedMap.${_id}`
+        let str = `chosedMap.${desc}`
         let chosedList = this.data.chosedList
-        chosedList.push({ _id, desc })
+        chosedList.push({ desc })
         this.setData({
           [str]: desc,
           chosedList: chosedList
@@ -102,11 +110,11 @@ Page({
   },
   // icon事件 - 移除
   iconRemove(e) {
-    let { _id } = e.target.dataset
-    if (this.data.chosedMap[_id]) {
-      let str = `chosedMap.${_id}`
+    let { desc } = e.target.dataset
+    if (this.data.chosedMap[desc]) {
+      let str = `chosedMap.${desc}`
       let chosedList = this.data.chosedList.reduce((acc, item) => {
-        if (item._id === _id) return acc
+        if (item.desc === desc) return acc
         else return (acc.push(item), acc)
       }, [])
       this.setData({
@@ -117,9 +125,9 @@ Page({
   },
   // 开始分析
   startAnalyse() {
-    let idStr = this.data.chosedList.map(item => item._id).join(',')
+    let descStr = this.data.chosedList.map(item => item.desc).join(',')
     wx.navigateTo({
-      url: `../analysis/analysis?type=_id&_id=${idStr}`
+      url: `../analysis/analysis?type=desc&desc=${descStr}`
     })
   }
 })

@@ -3,7 +3,7 @@
 Page({
   data: {
     entries: [{
-      name: '排行榜',
+      name: '最热搜',
       url: '../leadboard/leadboard',
       icon: ''
     }, {

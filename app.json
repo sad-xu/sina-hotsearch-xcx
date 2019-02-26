@@ -20,15 +20,15 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "实时"
+        "text": "今日之安德莱斯"
       },
       {
         "pagePath": "pages/search/search",
-        "text": "搜一搜"
+        "text": "昨日之巴斯顿"
       },
       {
         "pagePath": "pages/more/more",
-        "text": "更多"
+        "text": "终日之梅米特"
       }
     ]
   }

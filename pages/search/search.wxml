@@ -21,20 +21,20 @@
     <view 
       class="result-item"
       wx:for="{{searchList}}"
-      wx:key="{{_id}}">
+      wx:key="{{desc}}">
       <text class="item-text" 
-        data-_id="{{item._id}}" data-desc="{{item.desc}}" 
+        data-desc="{{item.desc}}" 
         bindtap="selectEvent">{{item.desc}}</text>
       <!-- 添加/移除 -->
       <text 
-        wx:if="{{chosedMap[item._id]}}" 
+        wx:if="{{chosedMap[item.desc]}}" 
         class="iconfont icon-ok item-icon"
-        data-_id="{{item._id}}" 
+        data-desc="{{item.desc}}" 
         catchtap="iconRemove"></text>
       <text 
         wx:else 
         class="iconfont icon-add item-icon"
-        data-_id="{{item._id}}" data-desc="{{item.desc}}" 
+        data-desc="{{item.desc}}"
         catchtap="iconAdd"></text>
     </view>
   </view>
@@ -48,20 +48,20 @@
     <view 
       class="result-item"
       wx:for="{{recommendList}}"
-      wx:key="{{_id}}">
+      wx:key="{{desc}}">
       <text class="item-text" 
-        data-_id="{{item._id}}" data-desc="{{item.desc}}" 
+        data-desc="{{item.desc}}" 
         catchtap="selectEvent">{{item.desc}}</text>
       <!-- 添加/移除 -->
       <text 
-        wx:if="{{chosedMap[item._id]}}" 
+        wx:if="{{chosedMap[item.desc]}}" 
         class="iconfont icon-ok item-icon"
-        data-_id="{{item._id}}" 
+        data-desc="{{item.desc}}" 
         catchtap="iconRemove"></text>
       <text 
         wx:else 
         class="iconfont icon-add item-icon"
-        data-_id="{{item._id}}" data-desc="{{item.desc}}" 
+        data-desc="{{item.desc}}" data-desc="{{item.desc}}" 
         catchtap="iconAdd"></text>
     </view>
   </view>
