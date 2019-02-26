@@ -13,9 +13,9 @@
       </view>
     </view>
   </view>
-  <!-- 列表数据 -->
-  <view class="content-wrapper" wx:if="{{!noData}}">
-    <text class="update">{{update}}更新</text>
+  <!-- 列表数据 --> 
+  <text class="update" hidden="{{!update}}">updated on {{update}}</text>
+  <view wx:if="{{!noData}}" class="content-wrapper">
     <view 
       class="item-wrapper"
       wx:for="{{listData}}" 

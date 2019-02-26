@@ -1,18 +1,16 @@
 <!--pages/index/index.wxml-->
-<text class="top-tip" hidden="{{!undateTime}}">{{updateTime}}更新</text>
-<view class="wrapper">
-  <!-- 最新50条热搜 -->
-  <view>
-    <view 
-      class="list-item" 
-      wx:for="{{hotList}}" 
-      wx:key="desc"
-      data-desc="{{item.desc}}"
-      bindtap="jumpToDetail">
-      <text class="item-index">{{index + 1}}</text>
-      <text class="item-desc">{{item.desc}}</text>
-      <text class="item-n">{{item.n}}</text>
-    </view>
+<view wx:if="{{!nodata}}" class="content-wrapper">
+  <text class="update" hidden="{{!updateTime}}">updated on {{updateTime}}</text>
+  <view 
+    class="item-wrapper" 
+    wx:for="{{hotList}}" 
+    wx:key="desc"
+    data-desc="{{item.desc}}"
+    bindtap="jumpToDetail">
+    <text class="item-index {{index < 3 ? 'top-index' : 'other-index'}}">{{index + 1}}</text>
+    <text class="item-desc">{{item.desc}}</text>
+    <text class="item-n">{{item.n}}</text>
   </view>
 </view>
-<text class="bottom-tip">{{tip}}</text>
+<text wx:else class="iconfont icon-nodata"></text>
+<text hidden="{{nodata}}" class="tip">{{tip}}</text>

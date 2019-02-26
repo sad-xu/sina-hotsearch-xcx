@@ -28,7 +28,7 @@ Page({
         if (res && res.update) {
           allData[type] = res
           this.setData({ // 更新时间取前一天
-            update: new Date(res.update - 57600000).toISOString(0, 10),
+            update: new Date(res.update - 57600000).toISOString().slice(0, 10),
             listData: res.data
           })
         } else {
