@@ -1,1 +1,117 @@
 /* pages/commitlog/commitlog.wxss */
+
+.wrapper {
+  padding-top: 100rpx;
+}
+
+/* 头部选择区域 */
+.type-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  font-size: 36rpx;
+  text-align: center;
+  color: #909399;
+  background-color:#f5f7fa;
+  border-bottom: 1px solid #e4e7ed;
+  border-top: 1px solid #e4e7ed;
+  box-shadow:0 0rpx 10rpx 10rpx #ffffff;
+  z-index: 9;
+}
+.type-item {
+  flex-grow: 1;
+  line-height: 100rpx;
+}
+.type-item:first-of-type {
+  border-right: 1px solid transparent;
+}
+.type-item:last-of-type {
+  border-left: 1px solid transparent;
+}
+.type-selected {
+  background-color: #fff;
+  border-color: #dcdfe6 !important;
+}
+
+
+/* content */
+.update {
+  position: fixed;
+  top: 110rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  color: #939393;
+  z-index: -1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  background-color:#fff;
+  padding-left: 10rpx;
+}
+.item-wrapper {
+  position: relative;
+  padding: 20rpx 30rpx;
+}
+.time {
+  display: flex;
+  align-items: center;
+  font-size: 34rpx;
+  color: #909399;
+}
+.time::before {
+  display: inline-block;
+  content: "";
+  width: 24rpx;
+  height: 24rpx;
+  background-color: #67c23a;
+  border-radius: 50px;
+  margin-right: 20rpx;
+  z-index: 2;
+}
+.log {
+  display: inline-block;
+  font-size: 36rpx;
+  padding-left: 45rpx;
+}
+.line {
+  position: absolute;
+  top:40rpx;
+  left:38rpx;
+  height: 100%;
+  width: 6rpx;
+  background-color: #c0c4cc;
+}
+.item-wrapper:first-of-type .line {
+  top: 0;
+  height: 200%;
+  border-radius: 5px;
+}
+.item-wrapper:last-of-type .line {
+  display: none;
+}
+
+.icon-nodata {
+  font-size: 500rpx;
+  margin-top: 100rpx;
+}
+
+.type-color-0 {
+  color: #67c23a;
+}
+.type-color-1 {
+  color: #409EFF;
+}
+.type-bg-color-0::before {
+  background-color: #67c23a;
+}
+.type-bg-color-1::before {
+  background-color: #409EFF;
+}
+

@@ -3,7 +3,7 @@
   <!-- 头部选项 -->
   <view class="type-wrapper">
     <view 
-      class="type-item {{index === selectedIndex ? 'type-selected' : ''}}"
+      class="type-item {{index === selectedIndex ? 'type-selected type-color-' + index : ''}}"
       wx:for="{{typeList}}" 
       wx:key="type" 
       data-type="{{item.type}}" data-index="{{index}}"
@@ -12,12 +12,16 @@
     </view>
   </view>
   <!-- 列表数据 -->
-  <view>
-    <text>{{update}}</text>
+  <text class="update" hidden="{{!update}}">updated on {{update}}</text>
+  <view wx:if="{{!nodata}}" class="content">
     <view 
+      class="item-wrapper"
       wx:for="{{listData}}" 
       wx:key="index">
-      {{item.time}}{{item.msg}}
+      <text class="time {{selectedIndex ? 'type-bg-color-1' : 'type-bg-color-0'}}">{{item.time}}</text>
+      <text class="log">{{item.msg}}</text>
+      <view class="line"></view>
     </view>
   </view>
+  <text wx:else class="iconfont icon-nodata"></text>
 </view>

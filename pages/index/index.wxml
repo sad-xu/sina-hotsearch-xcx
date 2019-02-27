@@ -1,5 +1,5 @@
 <!--pages/index/index.wxml-->
-<view wx:if="{{!nodata}}" class="content-wrapper">
+<view wx:if="{{!nodata}}">
   <text class="update" hidden="{{!updateTime}}">updated on {{updateTime}}</text>
   <view 
     class="item-wrapper" 
