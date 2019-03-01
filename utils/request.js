@@ -1,6 +1,8 @@
 // 请求
-// const URL = 'http://127.0.0.1:8021/api/'
-const URL = 'http://192.168.0.101:8021/'
+const URL = 
+  // 'http://192.168.0.101:8021/'
+  'https://sadxu.top/'
+
 const apiUrl = 'api/'
 
 const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true, navLoading = false} = {}) => {

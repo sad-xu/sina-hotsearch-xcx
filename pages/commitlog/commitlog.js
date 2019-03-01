@@ -63,5 +63,12 @@ Page({
       selectedIndex: index
     })
     this.init(type)
+  },
+  // 分享
+  onShareAppMessage() {
+    return {
+      title: '热搜分析师 - 提交记录',
+      imageUrl: '/assets/share-5.jpg'
+    }
   }
 })

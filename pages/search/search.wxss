@@ -3,6 +3,17 @@ page {
   background-color: #f8f8f8;
 }
 
+.tip {
+  position: fixed;
+  top: 100rpx;
+  left: 0;
+  right: 0;
+  color: #939393;
+  text-align:center;
+  font-size:30rpx;
+  z-index: -1;
+}
+
 .wrapper {
   position: absolute;
   top: 0;

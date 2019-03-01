@@ -1,0 +1,67 @@
+/* pages/road/road.wxss */
+
+.tip {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  color: #939393;
+  font-size:30rpx;
+  margin-top:20rpx;
+  z-index: -1;
+}
+
+.icon-github {
+  text-align:center;
+  font-size:400rpx;
+  background-color: #fff;
+}
+
+.content {
+  padding-bottom: 60rpx;
+  background-color: #fff;
+}
+
+.year-wrapper {
+  margin-bottom:30rpx;
+}
+.year-title {
+  font-size: 36rpx;
+  box-shadow: 0 5rpx 15rpx 0 rgba(0,0,0,0.4);
+  height:100rpx;
+  padding-left:50rpx;
+  line-height:100rpx;
+}
+.project-wrapper {
+  opacity: 0;
+  height: 0;
+  transition: 0.3s;
+  overflow: hidden;
+  padding: 20rpx;
+}
+.project {
+  margin:20rpx;
+}
+.project-name {
+  font-weight:bold;
+  border-bottom:1px solid #eee;
+  display:block;
+  margin-bottom:20rpx;
+}
+.project-desc {
+  display: block;
+  padding-left:30rpx;
+  line-height:60rpx;
+}
+
+
+
+/*  */
+.year-title-selected {
+  opacity: 0.4;
+}
+.project-wrapper-selected {
+  opacity: 1;
+  height: initial;
+}
+

@@ -1,7 +1,4 @@
 page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #f8f8f8;
 }
 
@@ -50,6 +47,8 @@ page {
 }
 
 .tip {
+  display:block;
+  text-align:center;
   font-size: 28rpx;
   height: 80rpx;
   line-height: 80rpx;

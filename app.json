@@ -1,11 +1,12 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/more/more",
     "pages/search/search",
-    "pages/index/index",
     "pages/analysis/analysis",
     "pages/leadboard/leadboard",
-    "pages/commitlog/commitlog"
+    "pages/commitlog/commitlog",
+    "pages/road/road"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -20,15 +21,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "今日之安德莱斯"
-      },
-      {
+        "text": "今日之安德莱斯",
+        "iconPath": "./assets/tab-1.png",
+        "selectedIconPath": "./assets/tab-1-s.png"
+      }, {
         "pagePath": "pages/search/search",
-        "text": "昨日之巴斯顿"
-      },
-      {
+        "text": "昨日之巴斯顿",
+        "iconPath": "./assets/tab-2.png",
+        "selectedIconPath": "./assets/tab-2-s.png"
+      }, {
         "pagePath": "pages/more/more",
-        "text": "终日之梅米特"
+        "text": "终日之梅米特",
+        "iconPath": "./assets/tab-3.png",
+        "selectedIconPath": "./assets/tab-3-s.png"
       }
     ]
   }

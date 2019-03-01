@@ -8,3 +8,9 @@
     <text>{{item.name}}</text>
   </view>
 </view>
+<!-- version -->
+<view class="version-wrapper">
+  <text bindtap="versionTap" class="version">V1.0.1</text>
+  <text class="tip">如有任何疑问，请联系唯一指定邮箱</text>
+  <text class="tip">1031568754@qq.com</text>
+</view>

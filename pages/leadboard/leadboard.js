@@ -43,7 +43,6 @@ Page({
       })
     } else {  // 有数据
       this.setData({
-        update: allData[type].update,
         listData: allData[type].data
       })
     }
@@ -65,5 +64,12 @@ Page({
     wx.navigateTo({
       url: `../analysis/analysis?type=desc&desc=${desc}`
     })
+  },
+  // 分享
+  onShareAppMessage() {
+    return {
+      title: '热搜分析师 - 排行榜',
+      imageUrl: '/assets/share-3.jpg'
+    }
   }
 })

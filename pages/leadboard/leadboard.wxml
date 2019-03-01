@@ -20,7 +20,7 @@
       class="item-wrapper"
       wx:for="{{listData}}" 
       wx:key="index"
-      data-desc="item.desc"
+      data-desc="{{item.desc}}"
       bindtap="jumpToDetail">
       <text class="item-index {{index < 3 ? 'top-index' : 'other-index'}}">{{index + 1}}</text>
       <text class="item-desc">{{item.desc}}</text>

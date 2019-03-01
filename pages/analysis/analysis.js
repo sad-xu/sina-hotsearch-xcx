@@ -11,7 +11,6 @@ import request from '../../utils/request.js'
  */
 
 // TODO: 加虚线
-console.log(echarts)
 
 let pageOption = {}
 

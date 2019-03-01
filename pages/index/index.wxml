@@ -1,6 +1,6 @@
 <!--pages/index/index.wxml-->
 <view wx:if="{{!nodata}}">
-  <text class="update" hidden="{{!updateTime}}">updated on {{updateTime}}</text>
+  <text class="update" hidden="{{!updateTime}}">update at {{updateTime}}</text>
   <view 
     class="item-wrapper" 
     wx:for="{{hotList}}" 

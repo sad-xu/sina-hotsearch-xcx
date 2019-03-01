@@ -15,6 +15,8 @@
     </input>
   </view>
 
+  <view class="tip">我怎么知道你要搜什么啦( `д´)</view>
+
   <!-- 搜索结果 -->
   <view 
     class="result-wrapper search-result {{showSearch ? '' : 'hide'}}">
@@ -80,8 +82,8 @@
       <view 
         class="chosed-item" 
         wx:for="{{chosedList}}" 
-        wx:key="{{_id}}"
-        data-_id="{{item._id}}" 
+        wx:key="{{desc}}"
+        data-desc="{{item.desc}}" 
         catchtap="iconRemove">
         <text>{{item.desc}}</text>  
         <icon type="clear" size="28rpx"></icon>

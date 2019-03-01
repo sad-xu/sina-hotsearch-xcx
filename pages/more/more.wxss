@@ -16,9 +16,32 @@ page {
   align-items: center;
   justify-content: center;
   width: 80%;
-  height: 150rpx;
+  height: 130rpx;
   margin-top: 60rpx;
-  background-color: #eee;
+  color: #F2F6FC;
+  background-color: #606266;
   border-radius: 10rpx;
-  box-shadow:0 2rpx 6rpx 0 rgba(0,0,0,0.1);
+  box-shadow:0 10rpx 20rpx 0 rgba(0,0,0,0.4);
+}
+.entry:last-child {
+  background-color:#909399;
+}
+
+/*  */
+.version-wrapper {
+  position: fixed;
+  bottom: 50rpx;
+  left: 0;
+  right: 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  color: #606266;
+}
+.version {
+  font-size: 40rpx;
+  padding: 20rpx 40rpx;
+}
+.tip {
+  font-size: 34rpx;
 }

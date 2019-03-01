@@ -129,5 +129,12 @@ Page({
     wx.navigateTo({
       url: `../analysis/analysis?type=desc&desc=${descStr}`
     })
+  },
+  // 分享
+  onShareAppMessage() {
+    return {
+      title: '热搜分析师 - 搜一搜',
+      imageUrl: '/assets/share-2.jpg'
+    }
   }
 })

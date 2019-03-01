@@ -1,0 +1,27 @@
+<!--pages/road/road.wxml-->
+<view class="tip">https://github.com/sad-xu</view>
+<view class="iconfont icon-github"></view>
+<view class="content">
+  <view 
+    class="year-wrapper" 
+    wx:for="{{detailData}}" 
+    wx:key="title"
+    wx:for-item="year"
+    wx:for-index="yearIndex">
+    <view 
+      class="year-title {{yearIndex === selectedIndex ? 'year-title-selected ' : ''}}" 
+      data-index="{{yearIndex}}" 
+      bindtap="selectItem">
+      <text>{{year.title}}</text>
+    </view>
+    <view class="project-wrapper {{yearIndex === selectedIndex ? 'project-wrapper-selected ' : ''}}">
+      <view 
+        class="project" 
+        wx:for="{{year.projects}}" 
+        wx:key="index">
+        <text class="project-name" data-url="{{item.url}}" bindtap="jumpToWeb">{{item.name}}</text>
+        <text class="project-desc" wx:for="{{item.desc}}" wx:key="index">{{item}}</text>
+      </view>
+    </view>
+  </view>
+</view>

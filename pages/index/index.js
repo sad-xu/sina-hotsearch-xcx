@@ -1,14 +1,8 @@
 // pages/index/index.js
 import request from '../../utils/request.js'
-// import util from '../../utils/util.js'
+import tipArr from '../../utils/tips.js'
 
 const app = getApp()
-
-const tipArr = [
-  '人是会思考的芦苇',
-  '1212121',
-  'rrrrrrr'
-]
 
 Page({
   data: {
@@ -47,5 +41,12 @@ Page({
       url: `../analysis/analysis?type=desc&desc=${desc}`
     })
   },
+  // 分享
+  onShareAppMessage() {
+    return {
+      title: '热搜分析师',
+      imageUrl: '/assets/share-6.jpg'
+    }
+  }
 })
 

@@ -34,4 +34,7 @@
 .icon-nodata:before {
   content: "\e603";
 }
+.icon-github:before {
+  content: "\e885";
+}
 
