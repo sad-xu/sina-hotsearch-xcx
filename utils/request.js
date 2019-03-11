@@ -69,9 +69,9 @@ function doLogin() {
               code: code
             }
           }, {
-            loading: false,
             tip: false,
-            navLoading: false
+            navLoading: false,
+            loading: false
           }).then(res => {
             wx.setStorageSync('token', res)
             resolve()

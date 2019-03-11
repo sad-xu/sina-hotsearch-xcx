@@ -24,7 +24,7 @@ Page({
     if (!allData[type]) { // 无数据 请求
       request.fetchCommitLog(type).then(res => {
         if (res && res.data.length) {
-          let update = new Date(res.update - 57600000).toISOString().slice(0, 10)
+          let update = new Date(res.update + 28800000).toISOString().slice(0, 10)
           let list = res.data.map(item => {
             let time = new Date(new Date(item.date).getTime() + 28800000).toISOString()
             return { // 2019-01-02 
