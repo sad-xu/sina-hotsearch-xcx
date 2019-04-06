@@ -1,6 +1,6 @@
 <!--pages/more/more.wxml-->
 <view class="wrapper">
-  <view class="entry" 
+  <view class="entry {{'dress-' + index}}" 
     wx:for="{{entries}}" 
     wx:key="index"
     data-url="{{item.url}}"
@@ -10,7 +10,8 @@
 </view>
 <!-- version -->
 <view class="version-wrapper">
-  <text bindtap="versionTap" class="version">V1.0.5</text>
-  <text class="tip">如有任何疑问，请联系唯一指定邮箱</text>
-  <text class="tip">1031568754@qq.com</text>
+  <text bindtap="versionTap" class="version">V1.0.6</text>
+  <text class="tip">新项目<text class="stitches">Stitches</text>火热开发中...</text>
+  <text class="tip">暂时停止本项目的新功能更新</text>
+  <text class="tip">BUG提交邮箱：1031568754@qq.com</text>
 </view>

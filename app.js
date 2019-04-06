@@ -15,9 +15,9 @@ import request from './utils/request.js'
 
 App({
   onLaunch() {
-    if (!wx.getStorageSync('token')) {
-      request.doLogin().then(() => console.log('首次登陆成功'))      
-    }
+    // if (!wx.getStorageSync('token')) {
+    //   request.doLogin().then(() => console.log('首次登陆成功'))      
+    // }
   },
   onError(err) {
     console.log('appErr: ', err)

@@ -1,7 +1,7 @@
 // pages/road/road.js
 Page({
   data: {
-    selectedIndex: -1,
+    selectedIndex: 0,
     detailData: [{
       title: '2019 三部曲',
       projects: [{
@@ -12,13 +12,19 @@ Page({
           '前端：小程序',
           '后端：nodejs + express + mongodb + redis'
         ]
-      }, {
-        name: 'Tracker',
-        url: 'https://github.com/sad-xu/tracker',
-        desc: [
-          '前端代码埋点库 + 统计后台示例',
-          '开发中...'
-        ]
+      }, 
+      // {
+      //   name: 'Tracker',
+      //   url: 'https://github.com/sad-xu/tracker',
+      //   desc: [
+      //     '前端代码埋点库 + 统计后台示例',
+      //     '开发中...'
+      //   ]
+      // }, 
+      {
+        name: '保密',
+        url: '',
+        desc: ['保密']
       }, {
         name: '保密',
         url: '',

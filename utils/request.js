@@ -6,6 +6,7 @@ const URL =
 const apiUrl = 'api/'
 
 const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true, navLoading = false} = {}) => {
+  console.log('showloading')
   if (loading) wx.showLoading({title: 'loading...', mask: true})
   if (navLoading) wx.showNavigationBarLoading()
   return new Promise((resolve, reject) => {
@@ -20,12 +21,20 @@ const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true
         if ((res.statusCode >= 200 && res.statusCode < 300) || res.statusCode === 304) {
           let { err, errmsg, data } = res.data
           if (err === 0) {
+            if (url !== 'login') {
+              console.log('hideloading')
+              if (loading) wx.hideLoading()
+              if (navLoading) wx.hideNavigationBarLoading()
+            }
             resolve(data)
           } else if (err === 999 || err === 998) {  // token失效 重新登录
             doLogin().then(() => {
               resolve(wxRequest({ url, method, data }, { loading, tip, navLoading }))
             })
           } else {
+            console.log('hideloading')
+            if (loading) wx.hideLoading()
+            if (navLoading) wx.hideNavigationBarLoading()
             if (tip) {
               wx.showToast({
                 title: `errcode: ${err} ,msg: ${errmsg}`,
@@ -35,17 +44,23 @@ const wxRequest = ({url, method = 'GET', data = {}}, {loading = true, tip = true
             reject(errmsg)
           }
         } else {
+          console.log('hideloading')
+          if (loading) wx.hideLoading()
+          if (navLoading) wx.hideNavigationBarLoading()
           if (tip) wx.showToast({ title: `网络错误：${res.statusCode}`, icon: 'none' })
           reject(res.data)
         }
       },
       fail(err) {
         if (tip) wx.showToast({ title: '接口调用失败', icon: 'none' })
+        console.log('hideloading')
+        if (loading) wx.hideLoading()
+        if (navLoading) wx.hideNavigationBarLoading()
         reject(err)
       },
       complete() {
-        if (loading) wx.hideLoading()
-        if (navLoading) wx.hideNavigationBarLoading()    
+        // if (loading) wx.hideLoading()
+        // if (navLoading) wx.hideNavigationBarLoading()    
       }
     })
   })
@@ -71,7 +86,7 @@ function doLogin() {
           }, {
             tip: false,
             navLoading: false,
-            loading: false
+            loading: true
           }).then(res => {
             wx.setStorageSync('token', res)
             resolve()

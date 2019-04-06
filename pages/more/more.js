@@ -16,10 +16,6 @@ Page({
       name: '开发之路',
       url: '../road/road',
       icon: ''
-    }, {
-      name: '敬请期待',
-      url: '',
-      icon: ''
     }],
   },
   jumpTo(e) {
