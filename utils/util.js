@@ -5,7 +5,7 @@ const util = {}
  * 时间格式化
  * 1546254900  Number
  */
-util.timeFormat = function (time) {
+util.timeFormat = function(time) {
   if (!time) return ''
   return new Date(time * 1000).toISOString()
 }

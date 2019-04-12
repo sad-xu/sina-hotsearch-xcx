@@ -29,7 +29,7 @@
         bindtap="selectEvent">{{item.desc}}</text>
       <!-- 添加/移除 -->
       <text 
-        wx:if="{{chosedMap[item.desc]}}" 
+        wx:if="{{wsx.indexOf(chosedList, item.desc) !== -1}}" 
         class="iconfont icon-ok item-icon"
         data-desc="{{item.desc}}" 
         catchtap="iconRemove"></text>
@@ -56,7 +56,7 @@
         catchtap="selectEvent">{{item.desc}}</text>
       <!-- 添加/移除 -->
       <text 
-        wx:if="{{chosedMap[item.desc]}}" 
+        wx:if="{{wsx.indexOf(chosedList, item.desc) !== -1}}" 
         class="iconfont icon-ok item-icon"
         data-desc="{{item.desc}}" 
         catchtap="iconRemove"></text>
@@ -82,10 +82,10 @@
       <view 
         class="chosed-item" 
         wx:for="{{chosedList}}" 
-        wx:key="{{desc}}"
-        data-desc="{{item.desc}}" 
+        wx:key="{{item}}"
+        data-desc="{{item}}" 
         catchtap="iconRemove">
-        <text>{{item.desc}}</text>  
+        <text>{{item}}</text>  
         <icon type="clear" size="28rpx"></icon>
       </view>
     </view>
@@ -96,3 +96,13 @@
 
   <view style="height:60rpx;"></view>
 </view>
+
+
+
+<wxs module="wsx">
+  var indexOf = function(arr, str) {
+    return arr.indexOf(str)
+  } 
+  module.exports.indexOf = indexOf
+</wxs>
+

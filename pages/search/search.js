@@ -14,8 +14,8 @@ Page({
     showSearch: false, // 搜索结果 : 推荐列表
     searchList: [],  // 搜索结果  [{_id, desc}, ]
     recommendList: [], // 推荐列表
-    chosedList: [], // 已选项      [{_id, desc}]
-    chosedMap: {}, // 已选项的映射 {_id: desc}
+    chosedList: [], // 已选项      [ desc ]
+    // chosedMap: {}, // 已选项的映射 {desc: desc}
   },
   onLoad() {
     this.initRecommend()    
@@ -91,18 +91,16 @@ Page({
   // icon事件 - 添加
   iconAdd(e) {
     let { desc} = e.target.dataset
-    if (!this.data.chosedMap[desc]) {
-      if (this.data.chosedList.length >= 6) {  // 上限6个
+    let chosedList = this.data.chosedList
+    if (chosedList.indexOf(desc) === -1) {
+      if (chosedList.length >= 6) {  // 上限6个
         wx.showToast({
           title: '亲亲,这边最多同时分析6条热搜呢',
           icon: 'none'
         })
       } else {
-        let str = `chosedMap.${desc}`
-        let chosedList = this.data.chosedList
-        chosedList.push({ desc })
+        chosedList.push(desc)
         this.setData({
-          [str]: desc,
           chosedList: chosedList
         })
       }
@@ -111,21 +109,23 @@ Page({
   // icon事件 - 移除
   iconRemove(e) {
     let { desc } = e.target.dataset
-    if (this.data.chosedMap[desc]) {
-      let str = `chosedMap.${desc}`
-      let chosedList = this.data.chosedList.reduce((acc, item) => {
-        if (item.desc === desc) return acc
-        else return (acc.push(item), acc)
-      }, [])
+    let chosedList = this.data.chosedList
+    const index = chosedList.indexOf(desc)
+    console.log(index)
+    if (index !== -1) {
+      chosedList.splice(index, 1)
+      // let chosedList = this.data.chosedList.reduce((acc, item) => {
+      //   if (item.desc === desc) return acc
+      //   else return (acc.push(item), acc)
+      // }, [])
       this.setData({
-        [str]: null,
         chosedList: chosedList
       })
     }
   },
   // 开始分析
   startAnalyse() {
-    let descStr = this.data.chosedList.map(item => item.desc).join(',')
+    let descStr = this.data.chosedList.join(',')
     wx.navigateTo({
       url: `../analysis/analysis?type=desc&desc=${descStr}`
     })
