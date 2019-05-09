@@ -14,9 +14,17 @@ Page({
   onLoad() {
     this.init()
   },
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.init(false).then(() => {
+      wx.stopPullDownRefresh()
+    }).catch(err => {
+      wx.stopPullDownRefresh()
+    })
+  },
   // 初始化 获取实时热搜列表 
-  init() {
-    request.fetchRealtimeHotwords().then(res => {
+  init(isLoading) {
+    return request.fetchRealtimeHotwords(isLoading).then(res => {
       if (res && res.data.length) {
         this.setData({
           hotList: res.data,

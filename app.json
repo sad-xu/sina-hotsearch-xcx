@@ -21,17 +21,17 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "今日之安德莱斯",
+        "text": "实时热点",
         "iconPath": "./assets/tab-1.png",
         "selectedIconPath": "./assets/tab-1-s.png"
       }, {
         "pagePath": "pages/search/search",
-        "text": "昨日之巴斯顿",
+        "text": "搜一搜",
         "iconPath": "./assets/tab-2.png",
         "selectedIconPath": "./assets/tab-2-s.png"
       }, {
         "pagePath": "pages/more/more",
-        "text": "终日之梅米特",
+        "text": "杂七杂八",
         "iconPath": "./assets/tab-3.png",
         "selectedIconPath": "./assets/tab-3-s.png"
       }

@@ -46,7 +46,7 @@
 
   <!-- 昨日 / 三日前 / 七日前 此刻热搜  -->
   <view class="result-wrapper recommend-wrapper {{showSearch | !recommendList.length ? 'hide' : ''}}">
-    <text hidden="{{showSearch}}" class="recommmend-title">推荐热点</text>
+    <text hidden="{{showSearch}}" class="recommmend-title">推荐热点（可多选）</text>
     <view 
       class="result-item"
       wx:for="{{recommendList}}"

@@ -106,9 +106,11 @@ request.doLogin = doLogin
 /**
  * 获取当前热搜
  */
-request.fetchRealtimeHotwords = () => {
+request.fetchRealtimeHotwords = (loading = true) => {
   return wxRequest({
     url: apiUrl + 'realtimehot'
+  }, {
+    loading
   })
 }
 

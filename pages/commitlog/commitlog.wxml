@@ -12,7 +12,7 @@
     </view>
   </view>
   <!-- 列表数据 -->
-  <text class="update" hidden="{{!update}}">updated on {{update}}</text>
+  <text class="update" hidden="{{!update}}">{{update}}</text>
   <view wx:if="{{!nodata}}" class="content">
     <view 
       class="item-wrapper"

@@ -57,8 +57,8 @@ page {
 }
 .version {
   font-size: 40rpx;
-  padding: 20rpx 40rpx;
-  color:#f44336;
+  margin-bottom:10rpx;
+  color:#e91e63;
   font-weight:bolder;
 }
 .tip {
@@ -70,4 +70,14 @@ page {
 .stitches {
   font-weight: bolder;
   color: #9c27b0;
+}
+
+.weibo {
+  font-weight: bolder;
+  color: #f44336;
+}
+
+.email {
+  font-weight: bolder;
+  color: #607d8b;
 }
