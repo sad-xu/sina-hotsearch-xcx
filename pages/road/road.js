@@ -22,9 +22,12 @@ Page({
       //   ]
       // }, 
       {
-        name: '保密',
-        url: '',
-        desc: ['保密']
+        name: 'Colorful Background',
+        url: 'https://github.com/sad-xu/colorful-background',
+        desc: [
+          'VSCode插件 colorful-background',
+          'Make your background colorful!'
+        ]
       }, {
         name: '保密',
         url: '',
