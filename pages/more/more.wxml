@@ -10,9 +10,9 @@
 </view>
 <!-- version -->
 <view class="version-wrapper">
-  <text bindtap="versionTap" class="version">V1.0.9</text>
+  <text bindtap="versionTap" class="version">V1.0.10</text>
   <text class="tip">该项目以后随缘更新</text>
-  <text class="tip">欢迎关注公众号：<text class="stitches">沉默池塘</text></text>
-  <text class="tip">唯一指定微博：<text class="weibo">热搜分析师bot</text></text>
+  <text class="tip">欢迎关注公众号：<text class="stitches">silent-pond</text></text>
   <text class="tip">联系邮箱：<text class="email">1031568754@qq.com</text></text>
+  <text class="tip">唯一指定微博：<text class="weibo">热搜分析师bot</text><text style="font-size:20rpx;">（已弃坑）</text></text>
 </view>
